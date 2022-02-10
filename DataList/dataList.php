@@ -91,6 +91,7 @@
             </div>
             <?php
 
+            // Tried to make pagenation work with no results
             require_once '../PHP/fetchTasks.php';
 
             $pager = new Fetch();
