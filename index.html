@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Magebit</title>
+        <meta name="description" content="Magebit test page">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./styles/index.css">
+
+    </head>
+    <body>
+
+        <div class="Main">
+            <div class="LeftSide">
+                <nav class="NavBar">
+                        <a href="#"> 
+                            <img src="./images/logo_pineapple.png" alt="logo">
+                        </a>
+                        <div class="Contacts">
+                            <a class="Links" href="#">About</a>
+                            <a class="Links" href="#">How it works</a>
+                            <a class="Links" href="#">Contact</a>
+                        </div>
+                    </nav>
+
+                <div class="content">
+                    <div id="middleContent">
+                        <div class="Text">
+                            <h1>Subscribe to newsletter</h1>
+                            <p>Subscribe to our newsletter and get 10% discount on pineapple glasses.</p>
+                        </div>
+                        <div class="inputContent">
+                            <form id="app" action="./PHP/add.php"  @submit="checkForm" novalidate="true" method="POST">
+                                <div class="InputBox">
+                                    <input id="email" v-model="email" type="text" name="email" placeholder="Type your email address here...">
+                                    <button class="Button" name="submit" type="submit">
+                                        <img class="Arrow" src="./images/svg/arrow.svg" alt="arrow">
+                                    </button>
+                                </div>
+                                <div class="Checkbox">
+                                    <input type="checkbox" v-model="checkbox" name="checkbox" id="checkbox" value="checkbox">
+                                    <label class="checkboxText" for="checkbox">I agree to <a href="#" class="services">terms and services</a></label>
+                                </div>
+                                <p v-if="errors.length">
+                                    <ul>
+                                      <li v-for="error in errors">{{ error }}</li>
+                                    </ul>
+                                  </p>
+                            </form>
+                        </div>
+                    </div>
+                   
+
+                    <div id="success">
+                        <div class="Text">
+                            <img src="./images/trophy.png" alt="trophy">
+                            <h1>Thanks for subscribing!</h1>
+                            <p>You have successfully subscribed to our email listing.</p>
+                            <p>Check your email for the discount code.</p>
+                        </div>
+                     </div>
+
+                    <hr>
+
+                    <div class="Social">
+                        <a href="#"><img class="Facebook" src="./images/svg/facebookLogo.svg" alt="facebook"></a>
+                        <a href="#"><img class="Instagram" src="./images/svg/instagramLogo.svg" alt="instagram"></a>
+                        <a href="#"><img class="Twitter" src="./images/svg/twitterLogo.svg" alt="twitter"></a>
+                        <a href="#"><img class="Youtube" src="./images/svg/youtubeLogo.svg" alt="youtube"></a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div>
+                <img class="RightSide" src="./images/PineappleBg.png" alt="pineappleBg">
+            </div>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+        <script src="./index.js"></script>
+    </body>
+</html>

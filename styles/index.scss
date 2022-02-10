@@ -1,0 +1,299 @@
+// Color variables
+$purple: #4066a5;
+$black: #131821;
+$grey: #6a707b;
+$light_grey: #e3e3e4;
+$white: #f2f5fa;
+
+// Font variables
+$headerFontSize: 32px;
+$headerLineHeight: 44px;
+$headerFontFamily: Georgia, "Times New Roman", Times, serif;
+
+$paragraphFontSize: 16px;
+$paragraphLineHeight: 28px;
+$paragraphFontFamily: Arial, Helvetica, sans-serif;
+$normalFontWeight: 400;
+
+// Social variables
+
+@mixin socialIcon($backgroundHover, $backgroundActive) {
+  width: 46px;
+  height: 46px;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  border: 2px solid $light_grey;
+  border-radius: 30px;
+  fill: $black;
+
+  &:hover {
+    box-shadow: 0 20px 40px rgba(19, 24, 33, 0.3);
+    fill: #fff;
+    background-color: $backgroundHover;
+    border: $backgroundHover;
+  }
+
+  &:active {
+    fill: #fff;
+    background-color: $backgroundActive;
+    border: $backgroundHover;
+  }
+}
+
+// Link variables
+
+@mixin link {
+  font-family: Arial;
+  font-size: 16px;
+  line-height: 28px;
+  text-decoration: underline;
+  color: $black;
+
+  &:hover {
+    color: $purple;
+  }
+
+  &:active {
+    color: #233759;
+  }
+}
+
+// Mobile size variables
+
+$breakpoint-tablet: 968px;
+
+$mobileHeaderFontSize: 24px;
+$mobileHeaderLineHeight: 34px;
+
+$mobileParagraphFontSize: 14px;
+$mobileParagraphLineHeight: 26px;
+$mobileParagraphFontFamily: Arial, Helvetica, sans-serif;
+
+// flex class that gives element given properties
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Body
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, #ffffff 0%, #f2f5fa 100%);
+}
+
+//Page orientation
+.Main {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+
+  @media only screen and (max-width: $breakpoint-tablet) {
+    display: block;
+  }
+}
+
+.LeftSide {
+  width: 35%;
+  padding: 5%;
+  z-index: 2;
+  display: block;
+
+  @media only screen and (max-width: $breakpoint-tablet) {
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url("./images/PineappleBg.png");
+    background-size: cover;
+  }
+}
+
+.RightSide {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  display: block;
+
+  @media only screen and (max-width: $breakpoint-tablet) {
+    display: none;
+  }
+}
+
+// Links
+.Links {
+  padding: 0 5px;
+  padding-top: 20px;
+  display: flex;
+  color: $grey;
+  text-decoration: none;
+  font-size: 16px;
+  line-height: 26px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+// Link div
+
+.Contacts {
+  width: 100%;
+  list-style-type: none;
+  display: flex;
+  justify-content: end;
+  height: 100%;
+}
+
+// Navbar
+
+.NavBar {
+  height: 56px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media only screen and (max-width: $breakpoint-tablet) {
+    background: linear-gradient(180deg, #ffffff 0%, #f2f5fa 100%);
+  }
+}
+
+.services {
+  @include link;
+}
+
+//Social
+
+.Social {
+  width: 100%;
+  margin: 40px auto;
+  text-align: center;
+
+  & a {
+    padding: 0 15px;
+  }
+}
+
+.Facebook {
+  @include socialIcon($purple, #2f4a80);
+}
+
+.Instagram {
+  @include socialIcon(#c13584, #8f2762);
+}
+
+.Twitter {
+  @include socialIcon(#1da1f2, #177fbf);
+}
+
+.Youtube {
+  @include socialIcon(#f00, #c00);
+}
+
+// Inputs
+
+.InputBox {
+  display: flex;
+  width: 130%;
+  position: relative;
+  border: 1px solid $light_grey;
+  outline: none;
+  margin-bottom: 40px;
+  z-index: 3;
+
+  &:focus,
+  :hover {
+    box-shadow: 0 30px 40px rgba(138, 143, 153, 0.06);
+  }
+
+  & #email {
+    width: 100%;
+    height: 70px;
+    font-size: 16px;
+    border: none;
+    border-left: 4px solid $purple;
+    padding: 0 20px;
+    outline: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  & .Button {
+    border: none;
+    outline: none;
+    padding: 0 20px;
+    background-color: #fff;
+
+    & .Arrow {
+      width: 24px;
+      height: 14px;
+      fill: white;
+    }
+  }
+}
+
+.Checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  color: $grey;
+}
+
+.Text {
+  margin: 150px auto 40px auto;
+  width: 100%;
+  font-weight: $normalFontWeight;
+
+  & h3 {
+    font-size: $headerFontSize;
+    line-height: $headerLineHeight;
+    font-family: $headerFontFamily;
+    color: $black;
+  }
+
+  & p {
+    font-size: $paragraphFontSize;
+    line-height: $paragraphLineHeight;
+    font-family: $paragraphFontFamily;
+    color: $grey;
+  }
+}
+
+.InputMsg {
+  font-size: 24px;
+}
+
+#success {
+  display: none;
+}
+
+//additional media
+@media only screen and (max-width: $breakpoint-tablet) {
+  .content {
+    width: 60%;
+    margin: 30% auto;
+    padding: 20px;
+    background: linear-gradient(180deg, #ffffff 0%, #f2f5fa 100%);
+
+    & .InputBox {
+      width: 100%;
+      position: relative;
+    }
+
+    & .Text {
+      margin: 0;
+    }
+
+    & .Social {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// displayed data form
+
+.main-screen {
+  height: 100vh;
+  flex-direction: column;
+}
