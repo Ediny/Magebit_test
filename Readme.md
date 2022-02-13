@@ -19,7 +19,7 @@ Start your localserver and Mysql.
 
 To get to homepage on local server, you need to go to: "localhost/Magebit/index.html".
 
-To get to page where database data can be seen, you need to go to: "localhost/new/DataList/dataList.php".
+To get to page where database data can be seen, you need to go to: "localhost/Magebit/DataList/dataList.php".
 
 ## Comments
 At the top of SCSS file there are variables that i took from design page for easier to maintain whole design.
