@@ -37,7 +37,7 @@ $controler = new Fetch();
 
                             <?php } ?>
                         </div>
-                        <!-- // Unique domains -->
+                        <!-- // Finds unique domains but couldn't make it work together with other functions -->
 
                         <div class="search-bar">
                             <input type="text" name="input-search" class="input-search">
