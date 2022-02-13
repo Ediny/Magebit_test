@@ -1,3 +1,11 @@
+<?php
+
+require_once '../PHP/fetchTasks.php';
+
+$controler = new Fetch();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,13 +27,27 @@
             <div class="email-control-buttons flex-center">
                 <div>
                     <form class="search-wrapper" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                        <div class="domains">
+                            <span>Domains:</span>
+                            <?php
+                            $list = $controler->getDomainName();
+                            foreach ($list as $key => $value) {
+                            ?>
+                                <button type="submit" name="submit[<?php echo $value; ?>]"><?php echo $value; ?></button>
+
+                            <?php } ?>
+                        </div>
+                        <!-- // Unique domains -->
+
                         <div class="search-bar">
                             <input type="text" name="input-search" class="input-search">
                             <button name="search" class="btn-search" type="submit">Search</button>
                         </div>
                         <!-- // Search input -->
+
                         <input type="submit" value="Export CSV" name="csv" form="main-form">
                         <!-- // CSV export button -->
+
                         <div id="sorting-btns">
                             <span>Sort by:</span>
                             <input type="submit" name='date' value="Date">
@@ -47,18 +69,8 @@
                         <th>Delete</th>
                     </thead>
                     <tbody>
+
                         <?php
-
-                        require_once '../PHP/fetchTasks.php';
-
-                        //determine which page number visitor is currently on  
-                        if (!isset($_GET['page'])) {
-                            $page = 1;
-                        } else {
-                            $page = $_GET['page'];
-                        }
-
-                        $controler = new Fetch();
 
                         // Sets the Order
                         if (isset($_POST['name'])) {
@@ -89,19 +101,6 @@
                     </tbody>
                 </table>
             </div>
-            <?php
-
-            // Tried to make pagenation work with no results
-            require_once '../PHP/fetchTasks.php';
-
-            $pager = new Fetch();
-            $number = $pager->getNumber();
-            //display the link of the pages in URL  
-            for ($page = 1; $page <= $number; $page++) {
-                echo '<a href = "dataList2.php?page=' . $page . '">' . $page . ' </a>';
-            }
-
-            ?>
         </form>
     </div>
 </body>
