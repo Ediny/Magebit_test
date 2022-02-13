@@ -9,12 +9,6 @@ class Controler
     private $username = 'root';
     private $password;
     private $dbname = 'magebit';
-    public $order = 'date';
-    public $number_of_page = null;
-    public $page_first_result = null;
-    public $results_per_page = 10;
-
-
 
     // constructor
     public function connect()
