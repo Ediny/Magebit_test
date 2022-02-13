@@ -6,42 +6,51 @@ require_once '../PHP/controler.php';
 class Fetch extends Controler
 {
 
-    public $page_number = null;
-    public $first_page = null;
-    // Fetch all tasks
+    public $order = 'date';
+    public $domain = array();
+    public $dom = array();
 
-    public function pagination()
+    // Selects all the records for future use
+    public function getEmails()
     {
-        //define total number of results you want per page  
-        $page = null;
-        //find the total number of results stored in the database  
-        $query = "SELECT * FROM email";
-        $result = mysqli_query($this->connect(), $query);
-        $number_of_result = mysqli_num_rows($result);
-
-        //determine the total number of pages available  
-        $this->page_number = $this->number_of_page = ceil($number_of_result / $this->results_per_page);
-        $this->first_page = $this->page_first_result = ($page - 1) * $this->results_per_page;
+        $sql = "SELECT email_name FROM email";
+        $stmt = $this->connect()->query($sql);
+        while ($dn = $stmt->fetch_array()) {
+            $domain[] = $dn;
+        }
+        return $domain;
     }
-    public function getNumber()
+
+    // Gets domain names
+    public function getDomainName()
     {
-        return $this->number_of_page;
+        $emails = $this->getEmails();
+        $providers = array();
+        foreach ($emails as $email) {
+            $domain = explode("@", $email["email_name"])[1];
+            $domainParts = explode(".", $domain);
+            $provider = $domainParts[count($domainParts) - 2];
+            if (!in_array($provider, $providers)) array_push($providers, $provider);
+        }
+        return $providers;
     }
-    // Viss virs šī ir mēģinājums uztaisīt papildus lapas
 
+    // Sets sorting order
     public function setOrder($order)
     {
         $this->order = $order;
     }
+
+    // fetches all records with specific 
     public function fetch()
     {
-        $search = '';
-        $search = $this->connect()->real_escape_string($_POST['input-search']);
+        $search = isset($_POST['input-search']) ? $_POST['input-search'] : '';
+        $clean_search = $this->connect()->real_escape_string($search);
         $res = null;
         $select = "SELECT * FROM email
-        WHERE email_name LIKE '%$search%'
+        WHERE email_name LIKE '%$clean_search%'
         ORDER BY $this->order
-        ASC LIMIT 20" . $this->page_first . ',' . $this->results_per_page;
+        ASC LIMIT 10";
 
         if ($sql = $this->connect()->query($select)) {
             while ($row = mysqli_fetch_assoc($sql)) {
@@ -51,3 +60,4 @@ class Fetch extends Controler
         return $res;
     }
 }
+
