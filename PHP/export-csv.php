@@ -1,6 +1,6 @@
 <?php
 
-require_once '../PHP/controler.php';
+require_once './controler.php';
 
 class Export extends Controler
 {
