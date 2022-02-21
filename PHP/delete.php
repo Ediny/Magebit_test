@@ -25,5 +25,5 @@ $id = $_REQUEST['id'];
 $delete = $controler->delete($id);
 
 if ($delete) {
-    header('Location: ../DataList/dataList.php');
+    header('Location: ../dataList.php');
 }
