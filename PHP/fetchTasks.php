@@ -1,6 +1,6 @@
 <?php
 
-require_once '../PHP/controler.php';
+require_once './PHP/controler.php';
 
 
 class GetResults extends Controler
@@ -50,7 +50,7 @@ class GetResults extends Controler
         $search = isset($_POST['input-search']) ? $_POST['input-search'] : '';
         $clean_search = $this->connect()->real_escape_string($search);
 
-        // attempt at making domain search
+        // atempt at making domain search
         // if (isset($_POST['submit'])) {
         //     $domain = array_keys($_POST['submit'])[0];
         // }
@@ -82,5 +82,4 @@ class GetResults extends Controler
         return $res;
     }
 }
-
 
