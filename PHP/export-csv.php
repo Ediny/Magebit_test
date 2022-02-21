@@ -1,6 +1,6 @@
 <?php
 
-require_once './controler.php';
+require_once '../PHP/controler.php';
 
 class Export extends Controler
 {
@@ -17,9 +17,8 @@ class Export extends Controler
                 $arr[] = $check;
             }
 
-
-            $query = "SELECT * from email WHERE id IN (" . implode(',', $arr) . ")";
-            $result = mysqli_query($this->connect(), $query);
+            $sql = "SELECT * from email WHERE id IN (" . implode(',', $arr) . ")";
+            $result = $this->connect()->query($sql);
             while ($row = mysqli_fetch_assoc($result)) {
                 fputcsv($output, $row);
             }
