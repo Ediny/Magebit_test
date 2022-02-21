@@ -3,14 +3,14 @@
 require_once '../PHP/controler.php';
 
 
-class Fetch extends Controler
+class GetResults extends Controler
 {
 
     public $order = 'date';
     public $domain = array();
     public $dom = array();
 
-    // Selects all the records for future use
+    // Selects all the emails from table
     public function getEmails()
     {
         $sql = "SELECT email_name FROM email";
@@ -41,16 +41,38 @@ class Fetch extends Controler
         $this->order = $order;
     }
 
+
+
     // fetches all records with specific 
-    public function fetch()
+    public function fetch($search = '', $order = '')
     {
+        // find and clean search input
         $search = isset($_POST['input-search']) ? $_POST['input-search'] : '';
         $clean_search = $this->connect()->real_escape_string($search);
+
+        // attempt at making domain search
+        // if (isset($_POST['submit'])) {
+        //     $domain = array_keys($_POST['submit'])[0];
+        // }
+        // $domain = isset($_POST['submit']) ? ($_POST['submit'])[0] : '';
+        // $domain = array_keys($_POST['submit'])[0];
+
         $res = null;
-        $select = "SELECT * FROM email
-        WHERE email_name LIKE '%$clean_search%'
-        ORDER BY $this->order
-        ASC LIMIT 10";
+        $select = "SELECT * FROM email";
+
+        if ($clean_search != '') {
+            $select .= " WHERE";
+            $select .= " email_name LIKE '%$clean_search%'";
+        }
+
+        if ($order != '') {
+            $select .= " ORDER BY $this->order";
+        }
+
+        // if ($domain != '') {
+        //     $select .= " WHERE";
+        //     $select .= " email_name LIKE '%$domain%'";
+        // }
 
         if ($sql = $this->connect()->query($select)) {
             while ($row = mysqli_fetch_assoc($sql)) {
@@ -60,4 +82,5 @@ class Fetch extends Controler
         return $res;
     }
 }
+
 
