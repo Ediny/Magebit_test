@@ -24,5 +24,7 @@ To get to page where database data can be seen, you need to go to: "localhost/Ma
 ## Comments
 At the top of SCSS file there are variables that i took from design page for easier to maintain whole design.
 
+The 2 things I couldn't get working was pagination on last task and sorting by domain names(I got the buttons appearing dynamically when new domain is registered but couldn't combine that functionalty with everything else)
+
 
 
