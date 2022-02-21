@@ -2,7 +2,7 @@
 Test task for Magebit junior developer position
 
 ## Description
-In this project is split into 2 pages: in one of them(index) you can send valid data to database and in the other one(dataList) you can retrieve it and sort by date, name and even search for specific text.
+In this project is split into 2 pages: in one of them(index) you can send valid data to database and in the other one(dataList) you can retrieve it and sort by date and name, export rows as CSV, delete rows from database and even search for specific text.
 
 SCSS and SASS are implemented to easier maintain and write stylesheets, using variables, mixins, etc.
 
